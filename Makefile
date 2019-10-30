@@ -96,9 +96,6 @@ install-%-inc:
 %$(SO):
 	$(CC) -o $@  $^ $(LDFLAGS) $(LDLIBS) $(CFLAGS)
 
-%.a:
-	$(AR) r $@ $^
-
 %.pic.o : CFLAGS += -fPIC
 %.pic.o : CFLAGS += -fvisibility=hidden
 
@@ -131,7 +128,6 @@ install-lib$(NAME):: $(addprefix install-lib$(NAME)-, dll)
 # ----------------------------------------------------------------------------
 
 install-libsailfishaccesscontrol-dev-inc: sailfishaccesscontrol.h
-install-libsailfishaccesscontrol-dev-lib: libsailfishaccesscontrol.a
 
 install-libsailfishaccesscontrol-dev:: $(addprefix install-libsailfishaccesscontrol-dev-, lib inc) $(NAME).pc
 	ln -sf lib$(NAME)$(SO) $(ROOT)$(LIBDIR)/lib$(NAME).so
