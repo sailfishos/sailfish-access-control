@@ -26,7 +26,7 @@ Requires:   %{name} = %{version}-%{release}
 C language headers of the Sailfish Access Control library.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-%{version}/glib
 
 %build
 make ROOT=%{buildroot} %{_smp_mflags} VERSION=%{version}
