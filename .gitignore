@@ -1,0 +1,9 @@
+/RPMS/
+*.list
+*.moc
+*.o
+*.pc
+*.so
+*.so.*
+moc_*
+qt/Makefile
