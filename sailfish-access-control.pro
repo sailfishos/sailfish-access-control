@@ -1,10 +1,7 @@
 # For QtCreator integration purposes. Not meant for building the project.
-TEMPLATE = aux
-
-HEADERS += sailfishaccesscontrol.h
-SOURCES += sailfishaccesscontrol.c
+TEMPLATE = subdir
+SUBDIRS = glib qt
 
 OTHER_FILES += \
-        Makefile \
-        sailfishaccesscontrol.pc.tpl \
         rpm/sailfish-access-control.spec \
+        rpm/sailfish-access-control-qt5.spec \
