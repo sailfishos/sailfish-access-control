@@ -1,5 +1,5 @@
 # For QtCreator integration purposes. Not meant for building the project.
-TEMPLATE = subdir
+TEMPLATE = subdirs
 SUBDIRS = glib qt
 
 OTHER_FILES += \
