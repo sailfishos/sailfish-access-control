@@ -22,12 +22,15 @@
 #include <stdbool.h>
 #include <unistd.h>
 
+#define SAILFISH_UNDEFINED_UID UINT_MAX
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 #pragma GCC visibility push(default)
 
 bool sailfish_access_control_hasgroup(uid_t uid, const char *group_name);
+uid_t sailfish_access_control_systemuser_uid();
 
 #pragma GCC visibility pop
 

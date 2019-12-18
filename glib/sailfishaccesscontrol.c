@@ -24,6 +24,8 @@
 #include <glib.h>
 
 #define NO_GROUPS GINT_TO_POINTER(1)
+#define SAILFISH_SYSTEM_GROUP "sailfish-system"
+#define SAILFISH_SYSTEM_PREFIX "sailfish-"
 
 GHashTable *s_groups = NULL;
 
@@ -76,4 +78,27 @@ bool sailfish_access_control_hasgroup(uid_t uid, const char *group_name)
         return true;
 
     return false;
+}
+
+uid_t sailfish_access_control_systemuser_uid()
+{
+    struct group *grp = getgrnam(SAILFISH_SYSTEM_GROUP);
+    struct passwd *pw;
+    int i;
+    uid_t uid = SAILFISH_UNDEFINED_UID;
+
+    // Get system user UID using sailfish-system group
+    if (grp) {
+        for (i = 0; grp->gr_mem[i]; i++) {
+            if (strncmp(grp->gr_mem[i], SAILFISH_SYSTEM_PREFIX, strlen(SAILFISH_SYSTEM_PREFIX))) {
+                pw = getpwnam(grp->gr_mem[i]);
+                if (pw) {
+                    uid = pw->pw_uid;
+                    break;
+                }
+            }
+        }
+    }
+
+    return uid;
 }

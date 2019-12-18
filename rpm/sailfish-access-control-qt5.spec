@@ -5,7 +5,7 @@ Release:    1
 License:    LGPLv2+
 URL:        https://git.sailfishos.org/mer-core/sailfish-access-control
 Source0:    %{name}-%{version}.tar.bz2
-BuildRequires: pkgconfig(sailfishaccesscontrol) = %{version}
+BuildRequires: pkgconfig(sailfishaccesscontrol) >= %{version}
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: pkgconfig(Qt5Qml)
 
