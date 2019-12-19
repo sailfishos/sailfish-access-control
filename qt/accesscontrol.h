@@ -32,11 +32,13 @@ public:
 
     enum Uid : int {
         RealUid = -1,
-        EffectiveUid = -2
+        EffectiveUid = -2,
+        UndefinedUid = -INT_MAX
     };
     Q_ENUM(Uid)
 
     Q_INVOKABLE bool hasGroup(int uid, const QString groupName);
+    Q_INVOKABLE int systemUserUid();
 };
 
 }

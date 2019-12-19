@@ -38,9 +38,20 @@ bool AccessControl::hasGroup(int uid, const QString groupName)
         case EffectiveUid:
             uid = geteuid();
             break;
+        case UndefinedUid:
+            return false;
+            break;
         default:
             Q_ASSERT_X(uid >= 0, Q_FUNC_INFO, "Uid must be either of enum type Uid or non-negative.");
             break;
     }
     return sailfish_access_control_hasgroup(uid, groupName.toLatin1().data());
+}
+
+int AccessControl::systemUserUid()
+{
+    uid_t uid = sailfish_access_control_systemuser_uid();
+    if (uid == SAILFISH_UNDEFINED_UID)
+        return Uid::UndefinedUid;
+    return uid;
 }
