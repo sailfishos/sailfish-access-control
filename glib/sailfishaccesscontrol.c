@@ -22,12 +22,37 @@
 #include <pwd.h>
 #include <stdlib.h>
 #include <glib.h>
+#include <sys/stat.h>
 
+#define GROUPS_DATABASE "/etc/group"
 #define NO_GROUPS GINT_TO_POINTER(1)
 #define SAILFISH_SYSTEM_GROUP "sailfish-system"
 #define SAILFISH_SYSTEM_PREFIX "sailfish-"
 
 GHashTable *s_groups = NULL;
+
+static void ensure_groups_validity()
+{
+    struct stat buf;
+    time_t new_mtime = 0;
+    static time_t old_mtime = 0;
+
+    if (stat(GROUPS_DATABASE, &buf) == 0)
+        new_mtime = buf.st_mtime;
+
+    if (old_mtime != new_mtime) {
+        old_mtime = new_mtime;
+        if (s_groups)
+            g_hash_table_remove_all(s_groups);
+    }
+}
+
+static void destroy_group_list(GSList *group_list)
+{
+    if (group_list == NO_GROUPS)
+        return;
+    g_slist_free_full(group_list, g_free);
+}
 
 static GSList *init_group_list(uid_t uid)
 {
@@ -63,8 +88,11 @@ static GSList *init_group_list(uid_t uid)
 bool sailfish_access_control_hasgroup(uid_t uid, const char *group_name)
 {
     GSList *groups = NULL;
+
+    ensure_groups_validity();
+
     if (!s_groups)
-        s_groups = g_hash_table_new(NULL, NULL);
+        s_groups = g_hash_table_new_full(NULL, NULL, NULL, destroy_group_list);
 
     groups = g_hash_table_lookup(s_groups, GINT_TO_POINTER(uid));
     if (!groups)
