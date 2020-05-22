@@ -5,7 +5,7 @@ PREFIX ?= /usr
 LIBDIR ?= $(PREFIX)/lib
 INCDIR ?= $(PREFIX)/include/$(NAME)
 
-PKGCFGDIR ?= $(PREFIX)/lib/pkgconfig
+PKGCFGDIR ?= $(LIBDIR)/pkgconfig
 
 SO ?= .so.0
 

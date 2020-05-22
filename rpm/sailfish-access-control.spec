@@ -29,14 +29,14 @@ C language headers of the Sailfish Access Control library.
 %setup -q -n %{name}-%{version}/glib
 
 %build
-make ROOT=%{buildroot} %{_smp_mflags} VERSION=%{version}
-make ROOT=%{buildroot} VERSION=%{version} sailfishaccesscontrol.pc
+make LIBDIR=%{_libdir} ROOT=%{buildroot} %{_smp_mflags} VERSION=%{version}
+make LIBDIR=%{_libdir} ROOT=%{buildroot} VERSION=%{version} sailfishaccesscontrol.pc
 
 %install
 rm -rf %{buildroot}
 
-make ROOT=%{buildroot} install-libsailfishaccesscontrol
-make ROOT=%{buildroot} install-libsailfishaccesscontrol-dev
+make LIBDIR=%{_libdir} ROOT=%{buildroot} install-libsailfishaccesscontrol
+make LIBDIR=%{_libdir} ROOT=%{buildroot} install-libsailfishaccesscontrol-dev
 
 %post -p /sbin/ldconfig
 
