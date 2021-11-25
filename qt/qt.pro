@@ -25,5 +25,9 @@ import.path = $$TARGETPATH
 target.path = $$TARGETPATH
 INSTALLS += target import
 
+qmltypes.commands = qmlplugindump -nonrelocatable $$replace(MODULENAME, /, .) 1.0 \
+	> $$PWD/plugins.qmltypes
+QMAKE_EXTRA_TARGETS += qmltypes
+
 QMAKE_CXXFLAGS += -Wall
 OTHER_FILES += qmldir *.qml *.js
