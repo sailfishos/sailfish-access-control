@@ -31,7 +31,7 @@
 
 GHashTable *s_groups = NULL;
 
-static void ensure_groups_validity()
+static void ensure_groups_validity(void)
 {
     struct stat buf;
     time_t new_mtime = 0;
@@ -108,7 +108,7 @@ bool sailfish_access_control_hasgroup(uid_t uid, const char *group_name)
     return false;
 }
 
-uid_t sailfish_access_control_systemuser_uid()
+uid_t sailfish_access_control_systemuser_uid(void)
 {
     struct group *grp = getgrnam(SAILFISH_SYSTEM_GROUP);
     struct passwd *pw;
