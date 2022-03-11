@@ -30,7 +30,7 @@ extern "C" {
 #pragma GCC visibility push(default)
 
 bool sailfish_access_control_hasgroup(uid_t uid, const char *group_name);
-uid_t sailfish_access_control_systemuser_uid();
+uid_t sailfish_access_control_systemuser_uid(void);
 
 #pragma GCC visibility pop
 
