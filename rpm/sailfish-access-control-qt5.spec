@@ -3,7 +3,7 @@ Summary:    Sailfish Access Control QML plugin
 Version:    0.0.1
 Release:    1
 License:    LGPLv2+
-URL:        https://git.sailfishos.org/mer-core/sailfish-access-control
+URL:        https://github.com/sailfishos/sailfish-access-control
 Source0:    %{name}-%{version}.tar.bz2
 BuildRequires: pkgconfig(sailfishaccesscontrol) >= %{version}
 BuildRequires: pkgconfig(Qt5Core)
@@ -34,7 +34,6 @@ belongs to a group or not.
 %qmake5
 
 %install
-rm -rf %{buildroot}
 
 %qmake5_install
 
@@ -43,5 +42,4 @@ rm -rf %{buildroot}
 %postun -n sailfish-access-control-qml-plugin -p /sbin/ldconfig
 
 %files -n sailfish-access-control-qml-plugin
-%defattr(-,root,root,-)
 %{_libdir}/qt5/qml/Sailfish/AccessControl
