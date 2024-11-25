@@ -3,7 +3,7 @@ Summary:    Sailfish Access Control library
 Version:    0.0.1
 Release:    1
 License:    LGPLv2+
-URL:        https://git.sailfishos.org/mer-core/sailfish-access-control
+URL:        https://github.com/sailfishos/sailfish-access-control
 Source0:    %{name}-%{version}.tar.bz2
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
@@ -33,8 +33,6 @@ make LIBDIR=%{_libdir} ROOT=%{buildroot} %{_smp_mflags} VERSION=%{version}
 make LIBDIR=%{_libdir} ROOT=%{buildroot} VERSION=%{version} sailfishaccesscontrol.pc
 
 %install
-rm -rf %{buildroot}
-
 make LIBDIR=%{_libdir} ROOT=%{buildroot} install-libsailfishaccesscontrol
 make LIBDIR=%{_libdir} ROOT=%{buildroot} install-libsailfishaccesscontrol-dev
 
@@ -43,11 +41,9 @@ make LIBDIR=%{_libdir} ROOT=%{buildroot} install-libsailfishaccesscontrol-dev
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root,-)
 %{_libdir}/libsailfishaccesscontrol.so.*
 
 %files devel
-%defattr(-,root,root,-)
 %{_includedir}/sailfishaccesscontrol/*
 %{_libdir}/libsailfishaccesscontrol.so
 %{_libdir}/pkgconfig/sailfishaccesscontrol.pc
