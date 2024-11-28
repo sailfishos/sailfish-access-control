@@ -42,4 +42,5 @@ belongs to a group or not.
 %postun -n sailfish-access-control-qml-plugin -p /sbin/ldconfig
 
 %files -n sailfish-access-control-qml-plugin
+%license COPYING
 %{_libdir}/qt5/qml/Sailfish/AccessControl

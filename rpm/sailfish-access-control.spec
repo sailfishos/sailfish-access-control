@@ -41,6 +41,7 @@ make LIBDIR=%{_libdir} ROOT=%{buildroot} install-libsailfishaccesscontrol-dev
 %postun -p /sbin/ldconfig
 
 %files
+%license COPYING
 %{_libdir}/libsailfishaccesscontrol.so.*
 
 %files devel
