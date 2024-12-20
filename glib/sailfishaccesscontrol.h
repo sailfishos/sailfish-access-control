@@ -19,6 +19,7 @@
 #ifndef SAILFISH_ACCESS_CONTROL_H_
 #define SAILFISH_ACCESS_CONTROL_H_
 
+#include <limits.h>
 #include <stdbool.h>
 #include <unistd.h>
 
