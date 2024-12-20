@@ -18,6 +18,7 @@
 #ifndef SAILFISH_ACCESSCONTROL_H
 #define SAILFISH_ACCESSCONTROL_H
 
+#include <climits>
 #include <QObject>
 
 namespace Sailfish {
